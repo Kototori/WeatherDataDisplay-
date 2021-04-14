@@ -1,0 +1,33 @@
+package com.mycompany.weatherdatadisplay.model;
+
+import com.mycompany.weatherdatadisplay.presenter.atualizarTela;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Robinson
+ */
+public class ultimaAtualizacaoObserver implements IModelObserver {
+
+    private String data;
+    private float temperatura;
+    private float umidade;
+    private float pressao;
+
+    public void update(ArrayList<dado> dado) {
+
+
+        if (dado.size() > 0) {
+            data = dado.get(dado.size() - 1).getData();
+            temperatura = dado.get(dado.size() - 1).getTemperatura();
+            umidade = dado.get(dado.size() - 1).getUmidade();
+            pressao = dado.get(dado.size() - 1).getPressao();
+
+            atualizarTela.atualizarUltima(data, temperatura, umidade, pressao);
+        } else {
+            atualizarTela.atualizarUltima("-", 0, 0, 0);
+        }
+
+    }
+
+}
